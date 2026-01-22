@@ -1,0 +1,1730 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Il Viaggio nei Dati | Il Commercialista Digitale</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Loader -->
+    <div id="loader">
+        <div class="loader-content">
+            <div class="loader-icon">
+                <i class="fas fa-database"></i>
+            </div>
+            <div class="loader-text">Caricamento...</div>
+        </div>
+    </div>
+
+    <!-- Progress Bar -->
+    <div class="progress-container">
+        <div class="progress-bar" id="progressBar"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-brand">
+            <span class="brand-icon"><i class="fas fa-chart-line"></i></span>
+            <span class="brand-text">Data Journey</span>
+        </div>
+        <button class="nav-toggle" id="navToggle" aria-label="Menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+    </nav>
+
+    <!-- Side Menu -->
+    <div class="side-menu" id="sideMenu">
+        <div class="menu-header">
+            <h3>Capitoli</h3>
+            <button class="menu-close" id="menuClose"><i class="fas fa-times"></i></button>
+        </div>
+        <ul class="menu-items">
+            <li data-section="hero" class="active"><span class="menu-num">00</span> Prologo</li>
+            <li data-section="diluvio"><span class="menu-num">01</span> Il Diluvio</li>
+            <li data-section="chiamata"><span class="menu-num">02</span> La Chiamata</li>
+            <li data-section="caos"><span class="menu-num">03</span> Il Caos</li>
+            <li data-section="database"><span class="menu-num">04</span> L'Ordine</li>
+            <li data-section="catena"><span class="menu-num">05</span> La Catena</li>
+            <li data-section="powerbi"><span class="menu-num">06</span> La Visione</li>
+            <li data-section="mcp"><span class="menu-num">07</span> L'Intelligenza</li>
+            <li data-section="ruoli"><span class="menu-num">08</span> Il Ruolo</li>
+            <li data-section="finale"><span class="menu-num">09</span> La Rivelazione</li>
+        </ul>
+    </div>
+    <div class="overlay" id="overlay"></div>
+
+    <main>
+        <!-- HERO: Titolo Intervento e Speaker -->
+        <section id="hero" class="section hero-section">
+            <div class="hero-background">
+                <div class="particles" id="particles"></div>
+                <div class="hero-gradient"></div>
+            </div>
+            <div class="hero-content">
+                <h1 class="hero-title">
+                    <span class="title-line">L'importanza della gestione dei dati</span>
+                    <span class="title-line accent">e il cambio di veste del commercialista</span>
+                </h1>
+                <p class="hero-subtitle">
+                    La storia di Elena, commercialista, e di un'azienda che stava affogando nei propri dati.
+                </p>
+
+                <!-- Stats -->
+                <div class="hero-stats">
+                    <div class="hero-stat">
+                        <span class="stat-number" data-count="40">0</span>
+                        <span class="stat-label">Zettabyte in 1 anno</span>
+                    </div>
+                    <div class="hero-stat">
+                        <span class="stat-number">3.1</span>
+                        <span class="stat-label">Trilioni $ persi</span>
+                    </div>
+                    <div class="hero-stat">
+                        <span class="stat-number">90%</span>
+                        <span class="stat-label">Dati inutilizzati</span>
+                    </div>
+                </div>
+                <div class="hero-sources">
+                    <i class="fas fa-info-circle"></i>
+                    <span>Fonti: IDC Global DataSphere 2020 | IBM/Gartner Data Quality | Forrester Research</span>
+                </div>
+
+                <!-- Speaker Card (clickable) -->
+                <div class="speaker-card" id="speakerCard">
+                    <div class="speaker-photo">
+                        <img src="speaker/David_gimp1.png" alt="David Bianconi">
+                    </div>
+                    <div class="speaker-info">
+                        <h3 class="speaker-name">David Bianconi</h3>
+                        <p class="speaker-role">Dottore Commercialista e Revisore Legale</p>
+                        <p class="speaker-bio">Controllo di Gestione &bull; Business Intelligence &bull; Power BI</p>
+                        <div class="speaker-click-hint">
+                            <i class="fas fa-hand-pointer"></i> Clicca per saperne di più
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Speaker Popup -->
+                <div class="info-popup" id="speakerPopup">
+                    <div class="popup-content speaker-popup-content">
+                        <button class="popup-close"><i class="fas fa-times"></i></button>
+                        <div class="popup-body speaker-popup-body">
+                            <!-- Colonna sinistra: foto e nome -->
+                            <div class="speaker-popup-left">
+                                <div class="speaker-popup-photo">
+                                    <img src="speaker/David_gimp1.png" alt="David Bianconi">
+                                </div>
+                                <div class="speaker-popup-title">
+                                    <h3>David Bianconi</h3>
+                                    <p class="speaker-popup-role">Dottore Commercialista<br>e Revisore Legale</p>
+                                </div>
+                                <div class="speaker-popup-contacts">
+                                    <a href="mailto:db@bianconi-mc.com" class="speaker-contact-btn">
+                                        <i class="fas fa-envelope"></i> db@bianconi-mc.com
+                                    </a>
+                                    <a href="https://www.linkedin.com/in/davidbianconi/" target="_blank" class="speaker-contact-btn linkedin">
+                                        <i class="fab fa-linkedin"></i> LinkedIn
+                                    </a>
+                                </div>
+                            </div>
+                            <!-- Colonna destra: bio e highlights -->
+                            <div class="speaker-popup-right">
+                                <div class="speaker-popup-bio">
+                                    <p>Commercialista dal 2008, mi occupo di <strong>Controllo di Gestione</strong> e <strong>Finanza Aziendale</strong> con un approccio basato sui dati. Ho unito la formazione economica con competenze tecniche in <strong>Database</strong>, <strong>Data Modeling</strong> e strumenti di <strong>Business Intelligence</strong> come Power BI, sviluppando soluzioni concrete per PMI di diversi settori.</p>
+                                </div>
+                                <div class="speaker-popup-highlights">
+                                    <div class="speaker-highlight">
+                                        <i class="fas fa-certificate"></i>
+                                        <span>Microsoft MCSA BI Reporting (2021)</span>
+                                    </div>
+                                    <div class="speaker-highlight">
+                                        <i class="fas fa-users-cog"></i>
+                                        <span>Presidente Commissione Controllo di Gestione ODCEC Perugia</span>
+                                    </div>
+                                    <div class="speaker-highlight">
+                                        <i class="fas fa-book"></i>
+                                        <span>Coautore "Business Intelligence per le PMI" (Maggioli, 2022)</span>
+                                    </div>
+                                    <div class="speaker-highlight">
+                                        <i class="fas fa-chalkboard-teacher"></i>
+                                        <span>Docente presso ODCEC, SAF e 24 Ore Business School</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="hero-cta">
+                    <a href="#diluvio" class="btn-primary">
+                        <span>Inizia il viaggio</span>
+                        <i class="fas fa-arrow-down"></i>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- CAPITOLO 1: Il Diluvio -->
+        <section id="diluvio" class="section">
+            <div class="section-container">
+                <div class="chapter-header">
+                    <span class="chapter-number">Capitolo 01</span>
+                    <h2 class="chapter-title">Il Diluvio dei Dati</h2>
+                    <p class="chapter-intro">Prima di conoscere Elena, capiamo il mondo in cui si muove.</p>
+                </div>
+
+                <div class="narrative-block">
+                    <div class="narrative-text">
+                        <p class="lead">Nel 2020, l'umanità ha prodotto <strong>40 Zettabyte</strong> di dati.</p>
+                        <p>Un numero impossibile da immaginare. Proviamoci.</p>
+                    </div>
+                </div>
+
+                <!-- Trigger Zettabyte -->
+                <div class="zb-trigger" id="zbTrigger">
+                    <div class="zb-trigger-icon"><i class="fas fa-question-circle"></i></div>
+                    <span>Cos'è uno Zettabyte?</span>
+                    <div class="zb-trigger-arrow"><i class="fas fa-chevron-right"></i></div>
+                </div>
+
+                <!-- Popup Zettabyte -->
+                <div class="info-popup" id="zbPopup">
+                    <div class="popup-content zb-popup-wide">
+                        <button class="popup-close"><i class="fas fa-times"></i></button>
+                        <div class="popup-body">
+                            <h4><i class="fas fa-database"></i> Cos'è uno Zettabyte?</h4>
+                            <div class="zb-scale-horizontal">
+                                <div class="zb-step">
+                                    <div class="zb-step-icon"><i class="fas fa-file-alt"></i></div>
+                                    <span class="zb-step-value">1 KB</span>
+                                    <span class="zb-step-desc">Una pagina</span>
+                                </div>
+                                <div class="zb-arrow"><i class="fas fa-chevron-right"></i><span>×1000</span></div>
+                                <div class="zb-step">
+                                    <div class="zb-step-icon"><i class="fas fa-image"></i></div>
+                                    <span class="zb-step-value">1 MB</span>
+                                    <span class="zb-step-desc">Una foto HD</span>
+                                </div>
+                                <div class="zb-arrow"><i class="fas fa-chevron-right"></i><span>×1000</span></div>
+                                <div class="zb-step">
+                                    <div class="zb-step-icon"><i class="fas fa-film"></i></div>
+                                    <span class="zb-step-value">1 GB</span>
+                                    <span class="zb-step-desc">Un film HD</span>
+                                </div>
+                                <div class="zb-arrow"><i class="fas fa-chevron-right"></i><span>×1000</span></div>
+                                <div class="zb-step">
+                                    <div class="zb-step-icon"><i class="fas fa-hdd"></i></div>
+                                    <span class="zb-step-value">1 TB</span>
+                                    <span class="zb-step-desc">500h video</span>
+                                </div>
+                                <div class="zb-arrow big"><i class="fas fa-chevron-right"></i><span>×1M</span></div>
+                                <div class="zb-step highlight">
+                                    <div class="zb-step-icon"><i class="fas fa-server"></i></div>
+                                    <span class="zb-step-value">1 ZB</span>
+                                    <span class="zb-step-desc">1 trilione GB</span>
+                                </div>
+                            </div>
+                            <div class="zb-conclusion">
+                                <p><strong>40 Zettabyte</strong> = 40 seguito da <strong>21 zeri</strong> di byte</p>
+                                <span class="zb-src"><i class="fas fa-bookmark"></i> IDC Global DataSphere, 2020</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Visualizzazione interattiva USB -->
+                <div class="interactive-viz" id="usbViz">
+                    <div class="viz-header">
+                        <h3>Clicca per esplorare</h3>
+                    </div>
+                    <div class="viz-cards">
+                        <div class="viz-card" data-info="usb">
+                            <div class="viz-card-icon">
+                                <i class="fas fa-hard-drive"></i>
+                            </div>
+                            <div class="viz-card-number">2,5 trilioni</div>
+                            <div class="viz-card-label">chiavette USB da 16GB</div>
+                            <div class="viz-card-expand"><i class="fas fa-plus"></i></div>
+                        </div>
+                        <div class="viz-card" data-info="distance">
+                            <div class="viz-card-icon">
+                                <i class="fas fa-sun"></i>
+                            </div>
+                            <div class="viz-card-number">125 milioni km</div>
+                            <div class="viz-card-label">quasi fino al Sole</div>
+                            <div class="viz-card-expand"><i class="fas fa-plus"></i></div>
+                        </div>
+                        <div class="viz-card" data-info="trucks">
+                            <div class="viz-card-icon">
+                                <i class="fas fa-truck"></i>
+                            </div>
+                            <div class="viz-card-number">1,5 milioni</div>
+                            <div class="viz-card-label">TIR a pieno carico</div>
+                            <div class="viz-card-expand"><i class="fas fa-plus"></i></div>
+                        </div>
+                        <div class="viz-card" data-info="time">
+                            <div class="viz-card-icon">
+                                <i class="fas fa-hourglass-half"></i>
+                            </div>
+                            <div class="viz-card-number">79.000 anni</div>
+                            <div class="viz-card-label">per contarle una a una</div>
+                            <div class="viz-card-expand"><i class="fas fa-plus"></i></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Info popup che appare al click -->
+                <div class="info-popup" id="infoPopup">
+                    <div class="popup-content">
+                        <button class="popup-close"><i class="fas fa-times"></i></button>
+                        <div class="popup-body" id="popupBody"></div>
+                    </div>
+                </div>
+
+                <!-- Il problema -->
+                <div class="problem-reveal">
+                    <div class="problem-icon"><i class="fas fa-exclamation-triangle"></i></div>
+                    <div class="problem-content">
+                        <h4>Ma il vero problema non è la quantità</h4>
+                        <p>È che l'<strong>80-90%</strong> di questi dati è inutilizzabile.</p>
+                        <p>Dati duplicati. Dati vecchi. Dati sbagliati. Dati che nessuno sa interpretare.</p>
+                    </div>
+                    <div class="problem-cost">
+                        <div class="cost-number">$3,1 trilioni</div>
+                        <div class="cost-label">Costo annuo dei dati "sporchi" solo negli USA</div>
+                    </div>
+                </div>
+
+                <div class="chapter-transition">
+                    <p>In questo mare di dati, chi può aiutare le aziende a non affogare?</p>
+                    <a href="#chiamata" class="btn-next"><span>Continua</span><i class="fas fa-chevron-down"></i></a>
+                </div>
+            </div>
+        </section>
+
+        <!-- CAPITOLO 2: La Chiamata -->
+        <section id="chiamata" class="section dark-section">
+            <div class="section-container">
+                <div class="chapter-header">
+                    <span class="chapter-number">Capitolo 02</span>
+                    <h2 class="chapter-title">La Chiamata</h2>
+                    <p class="chapter-intro">Elena riceve una telefonata che cambierà tutto.</p>
+                </div>
+
+                <!-- Storia con dialogue boxes animate -->
+                <div class="story-scene">
+                    <div class="scene-setting">
+                        <p class="scene-time">Lunedì mattina, ore 9:15</p>
+                        <p class="scene-location">Studio di Elena, commercialista</p>
+                    </div>
+
+                    <div class="dialogue-sequence">
+                        <div class="dialogue-bubble incoming with-image" data-delay="0">
+                            <div class="bubble-image"><img src="images/3.png" alt="Marco"></div>
+                            <div class="bubble-content">
+                                <p class="bubble-speaker">Marco, CFO di Exempia Food SpA</p>
+                                <p class="bubble-text">"Elena, abbiamo un problema. Il report gestionale arriva dopo 2 mesi. Quando lo presento, i dati sono già vecchi. I colleghi hanno smesso di leggerlo."</p>
+                            </div>
+                        </div>
+
+                        <div class="dialogue-bubble outgoing with-image" data-delay="1">
+                            <div class="bubble-content">
+                                <p class="bubble-speaker">Elena</p>
+                                <p class="bubble-text">"Capisco. Ma il problema non sono i numeri del bilancio, vero? Sono i dati che dovrebbero spiegarli."</p>
+                            </div>
+                            <div class="bubble-image"><img src="images/4.png" alt="Elena"></div>
+                        </div>
+
+                        <div class="dialogue-bubble incoming with-image" data-delay="2">
+                            <div class="bubble-image"><img src="images/5.png" alt="Marco"></div>
+                            <div class="bubble-content">
+                                <p class="bubble-speaker">Marco</p>
+                                <p class="bubble-text">"Esatto! Il costo del personale dipende dalle assunzioni - dati HR. Il fatturato dalla stagionalità - dati commerciali. Ma ogni reparto ha i suoi sistemi, i suoi fogli Excel, le sue versioni della verità."</p>
+                            </div>
+                        </div>
+
+                        <div class="dialogue-bubble outgoing with-image" data-delay="3">
+                            <div class="bubble-content">
+                                <p class="bubble-speaker">Elena</p>
+                                <p class="bubble-text">"Vengo a vedere. Domani mattina."</p>
+                            </div>
+                            <div class="bubble-image"><img src="images/6.png" alt="Elena"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Profilo Elena -->
+                <div class="character-card">
+                    <div class="character-image">
+                        <img src="images/segnaposto_elena.png" alt="Elena Conti">
+                    </div>
+                    <div class="character-info">
+                        <h4>Elena Conti</h4>
+                        <p class="character-role">Commercialista, 15 anni di esperienza</p>
+                        <div class="character-skills">
+                            <span class="skill-tag">Revisione contabile</span>
+                            <span class="skill-tag">Controllo di gestione</span>
+                            <span class="skill-tag">Governance</span>
+                        </div>
+                        <p class="character-quote">"Non sono qui per programmare. Sono qui per fare le domande giuste."</p>
+                    </div>
+                </div>
+
+                <div class="chapter-transition light">
+                    <p>Elena non sa ancora cosa troverà. Ma sa che le sue competenze saranno utili.</p>
+                    <a href="#caos" class="btn-next"><span>Cosa trova Elena</span><i class="fas fa-chevron-down"></i></a>
+                </div>
+            </div>
+        </section>
+
+        <!-- CAPITOLO 3: Il Caos -->
+        <section id="caos" class="section">
+            <div class="section-container">
+                <div class="chapter-header">
+                    <span class="chapter-number">Capitolo 03</span>
+                    <h2 class="chapter-title">Il Caos</h2>
+                    <p class="chapter-intro">Exempia Food: un'azienda che affoga nei propri dati.</p>
+                </div>
+
+                <!-- Scheda azienda -->
+                <div class="company-profile">
+                    <div class="company-header">
+                        <div class="company-logo"><i class="fas fa-industry"></i></div>
+                        <div class="company-name">
+                            <h4>Exempia Food SpA</h4>
+                            <p>Produzione alimentare</p>
+                        </div>
+                    </div>
+                    <div class="company-stats">
+                        <div class="company-stat">
+                            <span class="stat-value">€50M</span>
+                            <span class="stat-label">Fatturato</span>
+                        </div>
+                        <div class="company-stat">
+                            <span class="stat-value">180</span>
+                            <span class="stat-label">Dipendenti</span>
+                        </div>
+                        <div class="company-stat">
+                            <span class="stat-value">3</span>
+                            <span class="stat-label">Stabilimenti</span>
+                        </div>
+                        <div class="company-stat problem">
+                            <span class="stat-value">15+</span>
+                            <span class="stat-label">Sistemi diversi</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Mappa del caos - interattiva -->
+                <div class="chaos-map">
+                    <h4>Clicca su ogni reparto per vedere il problema</h4>
+                    <div class="chaos-grid">
+                        <div class="chaos-node" data-dept="vendite">
+                            <div class="node-icon"><i class="fas fa-shopping-cart"></i></div>
+                            <div class="node-label">Vendite</div>
+                            <div class="node-files">
+                                <i class="fas fa-file-excel"></i>
+                                <i class="fas fa-file-excel"></i>
+                                <i class="fas fa-file-excel"></i>
+                            </div>
+                        </div>
+                        <div class="chaos-node" data-dept="hr">
+                            <div class="node-icon"><i class="fas fa-users"></i></div>
+                            <div class="node-label">HR</div>
+                            <div class="node-files">
+                                <i class="fas fa-file-excel"></i>
+                                <i class="fas fa-file-excel"></i>
+                            </div>
+                        </div>
+                        <div class="chaos-node" data-dept="produzione">
+                            <div class="node-icon"><i class="fas fa-cogs"></i></div>
+                            <div class="node-label">Produzione</div>
+                            <div class="node-files">
+                                <i class="fas fa-file-excel"></i>
+                                <i class="fas fa-file-excel"></i>
+                                <i class="fas fa-file-excel"></i>
+                                <i class="fas fa-file-excel"></i>
+                            </div>
+                        </div>
+                        <div class="chaos-node" data-dept="acquisti">
+                            <div class="node-icon"><i class="fas fa-boxes"></i></div>
+                            <div class="node-label">Acquisti</div>
+                            <div class="node-files">
+                                <i class="fas fa-file-excel"></i>
+                                <i class="fas fa-file-excel"></i>
+                            </div>
+                        </div>
+                        <div class="chaos-node center" data-dept="finance">
+                            <div class="node-icon"><i class="fas fa-calculator"></i></div>
+                            <div class="node-label">Finance</div>
+                            <div class="node-question"><i class="fas fa-question"></i></div>
+                        </div>
+                    </div>
+                    <div class="chaos-lines"></div>
+                </div>
+
+                <!-- Popup dettaglio reparto -->
+                <div class="dept-popup" id="deptPopup">
+                    <div class="dept-popup-content">
+                        <button class="popup-close"><i class="fas fa-times"></i></button>
+                        <div class="dept-popup-body" id="deptPopupBody"></div>
+                    </div>
+                </div>
+
+                <!-- La scoperta di Elena -->
+                <div class="discovery-section">
+                    <div class="discovery-header">
+                        <div class="elena-avatar"><img src="images/segnaposto_elena.png" alt="Elena"></div>
+                        <h4>Elena analizza la situazione</h4>
+                    </div>
+                    <div class="discovery-findings">
+                        <div class="finding" data-aos="fade-up">
+                            <div class="finding-number">01</div>
+                            <div class="finding-content">
+                                <h5>25.000 clienti nel CRM</h5>
+                                <p>Ma 8.000 sono duplicati, 7.000 hanno email non valide, 5.000 non comprano da 5 anni.</p>
+                                <div class="finding-result">
+                                    <strong>Realtà:</strong> 5.000 clienti attivi
+                                </div>
+                            </div>
+                        </div>
+                        <div class="finding" data-aos="fade-up" data-aos-delay="100">
+                            <div class="finding-number">02</div>
+                            <div class="finding-content">
+                                <h5>3 versioni diverse del fatturato mensile</h5>
+                                <p>Vendite usa un metodo, Finance un altro, il CEO ha il suo Excel personale.</p>
+                                <div class="finding-result">
+                                    <strong>Differenza:</strong> fino a €200.000 al mese
+                                </div>
+                            </div>
+                        </div>
+                        <div class="finding" data-aos="fade-up" data-aos-delay="200">
+                            <div class="finding-number">03</div>
+                            <div class="finding-content">
+                                <h5>Nessuno sa l'origine dei dati</h5>
+                                <p>"Da dove viene questo numero?" - "L'ha sempre calcolato così Giovanni, ma è andato in pensione."</p>
+                                <div class="finding-result">
+                                    <strong>Rischio:</strong> decisioni basate su dati non verificabili
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Citazione Elena -->
+                <div class="elena-quote-block">
+                    <div class="quote-mark"><i class="fas fa-quote-left"></i></div>
+                    <blockquote>
+                        "Non avete un problema di tecnologia. Avete un problema di <strong>ordine</strong>. Prima di costruire dashboard e modelli predittivi, dovete sapere cosa avete e cosa significa."
+                    </blockquote>
+                    <div class="quote-elena-avatar"><img src="images/segnaposto_elena.png" alt="Elena"></div>
+                </div>
+
+                <div class="chapter-transition no-border">
+                    <p>Elena propone di partire dalle basi. Dalla teoria degli insiemi.</p>
+                    <a href="#database" class="btn-next"><span>La soluzione</span><i class="fas fa-chevron-down"></i></a>
+                </div>
+            </div>
+        </section>
+
+        <!-- CAPITOLO 4: L'Ordine (Database e Modello Relazionale) -->
+        <section id="database" class="section dark-section">
+            <div class="section-container">
+                <div class="chapter-header">
+                    <span class="chapter-number">Capitolo 04</span>
+                    <h2 class="chapter-title">L'Ordine</h2>
+                    <p class="chapter-intro">Elena spiega come mettere ordine nel caos: la storia del database relazionale.</p>
+                </div>
+
+                <!-- Intro narrativo -->
+                <div class="narrative-block centered">
+                    <p class="lead">Elena riunisce il team di Exempia Food per una sessione di lavoro.</p>
+                    <p>"Vi racconto una storia. La storia di come l'informatica ha imparato a mettere ordine."</p>
+                </div>
+
+                <!-- Timeline interattiva della storia del DB -->
+                <div class="db-story">
+                    <h4>Dai dati sparsi agli insiemi: una storia in 10 atti</h4>
+                    <p class="story-subtitle">Clicca su ogni atto per esplorare</p>
+
+                    <div class="story-timeline">
+                        <div class="timeline-track"></div>
+
+                        <div class="timeline-act" data-act="1">
+                            <div class="act-marker"><span>I</span></div>
+                            <div class="act-title">Il Caos Iniziale</div>
+                        </div>
+
+                        <div class="timeline-act" data-act="2">
+                            <div class="act-marker"><span>II</span></div>
+                            <div class="act-title">La Domanda</div>
+                        </div>
+
+                        <div class="timeline-act" data-act="3">
+                            <div class="act-marker"><span>III</span></div>
+                            <div class="act-title">L'Intuizione</div>
+                        </div>
+
+                        <div class="timeline-act" data-act="4">
+                            <div class="act-marker"><span>IV</span></div>
+                            <div class="act-title">L'Insieme</div>
+                        </div>
+
+                        <div class="timeline-act" data-act="5">
+                            <div class="act-marker"><span>V</span></div>
+                            <div class="act-title">L'Entità</div>
+                        </div>
+
+                        <div class="timeline-act" data-act="6">
+                            <div class="act-marker"><span>VI</span></div>
+                            <div class="act-title">La Tabella</div>
+                        </div>
+
+                        <div class="timeline-act" data-act="7">
+                            <div class="act-marker"><span>VII</span></div>
+                            <div class="act-title">Le Relazioni</div>
+                        </div>
+
+                        <div class="timeline-act" data-act="8">
+                            <div class="act-marker"><span>VIII</span></div>
+                            <div class="act-title">L'Identità</div>
+                        </div>
+
+                        <div class="timeline-act" data-act="9">
+                            <div class="act-marker"><span>IX</span></div>
+                            <div class="act-title">La Normalizzazione</div>
+                        </div>
+
+                        <div class="timeline-act" data-act="10">
+                            <div class="act-marker"><span>X</span></div>
+                            <div class="act-title">La Rivelazione</div>
+                        </div>
+                    </div>
+
+                    <!-- Contenuto degli atti -->
+                    <div class="act-content-container">
+                        <div class="act-content active" id="act-1">
+                            <div class="act-header">
+                                <span class="act-number">Atto I</span>
+                                <h4>Il Caos Iniziale</h4>
+                            </div>
+                            <div class="act-body">
+                                <p>C'era una volta un'azienda alimentare: Exempia Food.</p>
+                                <p>I dati erano ovunque: fogli Excel, email, post-it, la memoria di chi ci lavorava da sempre.</p>
+                                <div class="act-visual">
+                                    <div class="chaos-files">
+                                        <i class="fas fa-file-excel"></i>
+                                        <i class="fas fa-file-word"></i>
+                                        <i class="fas fa-envelope"></i>
+                                        <i class="fas fa-sticky-note"></i>
+                                        <i class="fas fa-brain"></i>
+                                    </div>
+                                </div>
+                                <p class="act-moral">Un cliente poteva essere in tre posti diversi, con tre nomi diversi, tre email diverse.</p>
+                            </div>
+                        </div>
+
+                        <div class="act-content" id="act-2">
+                            <div class="act-header">
+                                <span class="act-number">Atto II</span>
+                                <h4>La Domanda</h4>
+                            </div>
+                            <div class="act-body">
+                                <p class="act-dialogue">"Quanti clienti abbiamo?"</p>
+                                <p>Tre persone, tre risposte diverse:</p>
+                                <div class="act-responses">
+                                    <div class="response"><span class="resp-who">Marketing:</span> "2.340"</div>
+                                    <div class="response"><span class="resp-who">Vendite:</span> "1.890"</div>
+                                    <div class="response"><span class="resp-who">Admin:</span> "2.100 circa"</div>
+                                </div>
+                                <p class="act-moral">Il problema non era la risposta. Era che <strong>nessuno aveva torto</strong>. Ognuno contava cose diverse.</p>
+                            </div>
+                        </div>
+
+                        <div class="act-content" id="act-3">
+                            <div class="act-header">
+                                <span class="act-number">Atto III</span>
+                                <h4>L'Intuizione</h4>
+                            </div>
+                            <div class="act-body">
+                                <p>Prima di contare, bisogna <strong>definire</strong>.</p>
+                                <p class="act-question">Cos'è un cliente?</p>
+                                <ul class="act-list">
+                                    <li>Chi ha comprato almeno una volta?</li>
+                                    <li>Chi ha comprato nell'ultimo anno?</li>
+                                    <li>Chi è iscritto alla newsletter?</li>
+                                    <li>Chi ha chiesto un preventivo?</li>
+                                </ul>
+                                <p class="act-moral">Non c'è una risposta giusta. Ma serve <strong>una definizione condivisa</strong>.</p>
+                            </div>
+                        </div>
+
+                        <div class="act-content" id="act-4">
+                            <div class="act-header">
+                                <span class="act-number">Atto IV</span>
+                                <h4>L'Insieme</h4>
+                            </div>
+                            <div class="act-body">
+                                <p>Entra in scena la matematica. Un <strong>insieme</strong> è una collezione di elementi che condividono una proprietà.</p>
+                                <div class="set-visual">
+                                    <div class="set-circle">
+                                        <div class="set-label">CLIENTI</div>
+                                        <div class="set-elements">
+                                            <span>Rossi</span>
+                                            <span>Bianchi</span>
+                                            <span>Verdi</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <p>Non importa <em>come</em> li conti. Importa <em>chi</em> appartiene all'insieme.</p>
+                                <p class="act-moral">L'insieme è il fondamento logico. Viene prima del software.</p>
+                            </div>
+                        </div>
+
+                        <div class="act-content" id="act-5">
+                            <div class="act-header">
+                                <span class="act-number">Atto V</span>
+                                <h4>L'Entità</h4>
+                            </div>
+                            <div class="act-body">
+                                <p>Un'<strong>entità</strong> è un insieme che esiste indipendentemente da come lo descriviamo.</p>
+                                <div class="entity-visual">
+                                    <div class="entity-box">
+                                        <div class="entity-icon"><i class="fas fa-user"></i></div>
+                                        <div class="entity-name">CLIENTE</div>
+                                        <div class="entity-attrs">
+                                            <span>Nome</span>
+                                            <span>Email</span>
+                                            <span>Telefono</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <p>Il signor Rossi è un cliente:</p>
+                                <ul class="act-list">
+                                    <li>Che lo chiami "Mario Rossi" o "Rossi M."</li>
+                                    <li>Che abbia comprato ieri o un anno fa</li>
+                                    <li>Che sia nel CRM o in un post-it</li>
+                                </ul>
+                                <p class="act-moral">L'entità esiste nella realtà. Il database la riconosce, non la inventa.</p>
+                            </div>
+                        </div>
+
+                        <div class="act-content" id="act-6">
+                            <div class="act-header">
+                                <span class="act-number">Atto VI</span>
+                                <h4>La Tabella</h4>
+                            </div>
+                            <div class="act-body">
+                                <p>Dall'insieme alla <strong>tabella</strong>: la rappresentazione concreta.</p>
+                                <div class="table-visual">
+                                    <table class="demo-table">
+                                        <thead>
+                                            <tr>
+                                                <th>ID</th>
+                                                <th>Nome</th>
+                                                <th>Email</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr><td>1</td><td>Mario Rossi</td><td>rossi@email.it</td></tr>
+                                            <tr><td>2</td><td>Anna Bianchi</td><td>bianchi@email.it</td></tr>
+                                            <tr><td>3</td><td>Luca Verdi</td><td>verdi@email.it</td></tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <ul class="act-list">
+                                    <li>Ogni entità → una tabella</li>
+                                    <li>Ogni elemento → una riga</li>
+                                    <li>Ogni caratteristica → una colonna</li>
+                                </ul>
+                                <p class="act-moral">La tabella non è un contenitore casuale. È una rappresentazione coerente di un'entità.</p>
+                            </div>
+                        </div>
+
+                        <div class="act-content" id="act-7">
+                            <div class="act-header">
+                                <span class="act-number">Atto VII</span>
+                                <h4>Le Relazioni</h4>
+                            </div>
+                            <div class="act-body">
+                                <p class="act-dialogue">"Un cliente può ordinare più prodotti. Un prodotto può essere ordinato da più clienti."</p>
+                                <p>Non si forzano i dati. Si riconosce un <strong>nuovo insieme</strong>: gli ordini.</p>
+                                <div class="relation-visual">
+                                    <div class="rel-table">CLIENTI</div>
+                                    <div class="rel-line"></div>
+                                    <div class="rel-table bridge">ORDINI</div>
+                                    <div class="rel-line"></div>
+                                    <div class="rel-table">PRODOTTI</div>
+                                </div>
+                                <p class="act-moral">Un ordine è un fatto reale: un cliente acquista un prodotto in una data.</p>
+                            </div>
+                        </div>
+
+                        <div class="act-content" id="act-8">
+                            <div class="act-header">
+                                <span class="act-number">Atto VIII</span>
+                                <h4>L'Identità</h4>
+                            </div>
+                            <div class="act-body">
+                                <p class="act-dialogue">"Due clienti hanno lo stesso nome."</p>
+                                <p>Nessuno si stupisce più. Ogni entità ha un <strong>identificativo univoco</strong>.</p>
+                                <div class="key-visual">
+                                    <div class="key-icon"><i class="fas fa-key"></i></div>
+                                    <div class="key-text">
+                                        <p>I nomi servono a leggere.</p>
+                                        <p>Le chiavi servono a non sbagliare.</p>
+                                    </div>
+                                </div>
+                                <p class="act-moral">Separare l'identità dalla descrizione è la base di ogni sistema affidabile.</p>
+                            </div>
+                        </div>
+
+                        <div class="act-content act-expanded" id="act-9">
+                            <div class="act-header">
+                                <span class="act-number">Atto IX</span>
+                                <h4>La Normalizzazione</h4>
+                            </div>
+                            <div class="act-body">
+                                <p class="act-intro">La normalizzazione elimina ridondanze e anomalie. Tre regole progressive per dati che non si contraddicono mai.</p>
+
+                                <!-- 3 Riquadri Forme Normali -->
+                                <div class="normal-forms-intro">
+                                    <div class="nf-card">
+                                        <div class="nf-badge">1NF</div>
+                                        <h5>Prima Forma Normale</h5>
+                                        <p>Ogni cella contiene un solo valore atomico</p>
+                                    </div>
+                                    <div class="nf-card">
+                                        <div class="nf-badge">2NF</div>
+                                        <h5>Seconda Forma Normale</h5>
+                                        <p>Ogni attributo dipende dall'intera chiave primaria</p>
+                                    </div>
+                                    <div class="nf-card">
+                                        <div class="nf-badge">3NF</div>
+                                        <h5>Terza Forma Normale</h5>
+                                        <p>Nessun attributo dipende da altri attributi non-chiave</p>
+                                    </div>
+                                </div>
+
+                                <!-- Esempi delle 3 Forme -->
+                                <div class="nf-examples">
+                                    <div class="nf-example">
+                                        <div class="nf-example-header">
+                                            <span class="nf-label">1NF</span>
+                                            <span class="nf-title">Valori atomici</span>
+                                        </div>
+                                        <div class="nf-comparison">
+                                            <div class="nf-before">
+                                                <span class="nf-status bad"><i class="fas fa-times"></i> Prima</span>
+                                                <table class="mini-table">
+                                                    <tr><th>Ordine</th><th>Prodotti</th></tr>
+                                                    <tr><td>#101</td><td>Pizza, Pasta, Pane</td></tr>
+                                                </table>
+                                            </div>
+                                            <div class="nf-arrow"><i class="fas fa-arrow-right"></i></div>
+                                            <div class="nf-after">
+                                                <span class="nf-status good"><i class="fas fa-check"></i> Dopo</span>
+                                                <table class="mini-table">
+                                                    <tr><th>Ordine</th><th>Prodotto</th></tr>
+                                                    <tr><td>#101</td><td>Pizza</td></tr>
+                                                    <tr><td>#101</td><td>Pasta</td></tr>
+                                                    <tr><td>#101</td><td>Pane</td></tr>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="nf-example">
+                                        <div class="nf-example-header">
+                                            <span class="nf-label">2NF</span>
+                                            <span class="nf-title">Dipendenza dalla chiave completa</span>
+                                        </div>
+                                        <div class="nf-comparison">
+                                            <div class="nf-before">
+                                                <span class="nf-status bad"><i class="fas fa-times"></i> Prima</span>
+                                                <table class="mini-table">
+                                                    <tr><th><u>Ordine</u></th><th><u>Prodotto</u></th><th>Qtà</th><th>NomeProd</th><th>Prezzo</th></tr>
+                                                    <tr><td>#101</td><td>P01</td><td>2</td><td>Pizza</td><td>€8</td></tr>
+                                                </table>
+                                                <p class="nf-problem">Chiave composta (Ordine+Prodotto), ma NomeProd e Prezzo dipendono solo da Prodotto!</p>
+                                            </div>
+                                            <div class="nf-arrow"><i class="fas fa-arrow-right"></i></div>
+                                            <div class="nf-after">
+                                                <span class="nf-status good"><i class="fas fa-check"></i> Dopo</span>
+                                                <table class="mini-table">
+                                                    <tr><th><u>Ordine</u></th><th><u>Prodotto</u></th><th>Qtà</th></tr>
+                                                    <tr><td>#101</td><td>P01</td><td>2</td></tr>
+                                                </table>
+                                                <table class="mini-table">
+                                                    <tr><th><u>Prodotto</u></th><th>NomeProd</th><th>Prezzo</th></tr>
+                                                    <tr><td>P01</td><td>Pizza</td><td>€8</td></tr>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="nf-example">
+                                        <div class="nf-example-header">
+                                            <span class="nf-label">3NF</span>
+                                            <span class="nf-title">No dipendenze transitive</span>
+                                        </div>
+                                        <div class="nf-comparison">
+                                            <div class="nf-before">
+                                                <span class="nf-status bad"><i class="fas fa-times"></i> Prima</span>
+                                                <table class="mini-table">
+                                                    <tr><th><u>Dipendente</u></th><th>Nome</th><th>Reparto</th><th>SedeReparto</th></tr>
+                                                    <tr><td>D01</td><td>Mario</td><td>Vendite</td><td>Milano</td></tr>
+                                                </table>
+                                                <p class="nf-problem">SedeReparto dipende da Reparto, non da Dipendente (transitiva!)</p>
+                                            </div>
+                                            <div class="nf-arrow"><i class="fas fa-arrow-right"></i></div>
+                                            <div class="nf-after">
+                                                <span class="nf-status good"><i class="fas fa-check"></i> Dopo</span>
+                                                <table class="mini-table">
+                                                    <tr><th><u>Dipendente</u></th><th>Nome</th><th>Reparto</th></tr>
+                                                    <tr><td>D01</td><td>Mario</td><td>Vendite</td></tr>
+                                                </table>
+                                                <table class="mini-table">
+                                                    <tr><th><u>Reparto</u></th><th>SedeReparto</th></tr>
+                                                    <tr><td>Vendite</td><td>Milano</td></tr>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <p>Passano i mesi. Nuovi prodotti, fornitori, promozioni. Ma questa volta:</p>
+                                <div class="check-list">
+                                    <div class="check-item"><i class="fas fa-check"></i> I dati non si contraddicono</div>
+                                    <div class="check-item"><i class="fas fa-check"></i> Gli aggiornamenti non rompono il passato</div>
+                                    <div class="check-item"><i class="fas fa-check"></i> Le domande trovano risposte stabili</div>
+                                </div>
+                                <p class="act-moral">La <strong>normalizzazione</strong> è la difesa contro il degrado naturale dei dati.</p>
+                            </div>
+                        </div>
+
+                        <div class="act-content" id="act-10">
+                            <div class="act-header">
+                                <span class="act-number">Atto X</span>
+                                <h4>La Rivelazione</h4>
+                            </div>
+                            <div class="act-body revelation">
+                                <p class="act-dialogue">"Non abbiamo progettato un database. Abbiamo messo ordine nella realtà."</p>
+                                <div class="revelation-box">
+                                    <p>Prima delle tabelle → gli <strong>insiemi</strong></p>
+                                    <p>Prima del software → il <strong>significato</strong></p>
+                                    <p>Un database funziona quando rispetta la <strong>struttura della realtà</strong></p>
+                                </div>
+                                <p class="act-moral final">Ecco perché il commercialista può capire i dati: lavora già con le categorie, le classificazioni, le relazioni tra entità.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="chapter-transition light">
+                    <p>Ora che Exempia Food ha capito cos'è l'ordine, può costruire la catena del valore.</p>
+                    <a href="#catena" class="btn-next"><span>La Catena del Valore</span><i class="fas fa-chevron-down"></i></a>
+                </div>
+            </div>
+        </section>
+
+        <!-- CAPITOLO 5: La Catena del Valore -->
+        <section id="catena" class="section">
+            <div class="section-container">
+                <div class="chapter-header">
+                    <span class="chapter-number">Capitolo 05</span>
+                    <h2 class="chapter-title">La Catena del Valore</h2>
+                    <p class="chapter-intro">Elena spiega i 4 passaggi che trasformano i dati in decisioni.</p>
+                </div>
+
+                <!-- Catena visuale interattiva -->
+                <div class="value-chain">
+                    <div class="chain-visual">
+                        <div class="chain-step" data-step="1">
+                            <div class="step-circle">
+                                <i class="fas fa-database"></i>
+                            </div>
+                            <div class="step-label">Raccogliere</div>
+                            <div class="step-role">Data Engineer</div>
+                        </div>
+                        <div class="chain-arrow"><i class="fas fa-arrow-right"></i></div>
+                        <div class="chain-step" data-step="2">
+                            <div class="step-circle">
+                                <i class="fas fa-share-alt"></i>
+                            </div>
+                            <div class="step-label">Condividere</div>
+                            <div class="step-role">Data Controller</div>
+                        </div>
+                        <div class="chain-arrow"><i class="fas fa-arrow-right"></i></div>
+                        <div class="chain-step" data-step="3">
+                            <div class="step-circle">
+                                <i class="fas fa-brain"></i>
+                            </div>
+                            <div class="step-label">Analizzare</div>
+                            <div class="step-role">Data Scientist</div>
+                        </div>
+                        <div class="chain-arrow"><i class="fas fa-arrow-right"></i></div>
+                        <div class="chain-step" data-step="4">
+                            <div class="step-circle">
+                                <i class="fas fa-bullhorn"></i>
+                            </div>
+                            <div class="step-label">Comunicare</div>
+                            <div class="step-role">Consulente</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Dettagli dei passaggi -->
+                <div class="chain-details">
+                    <div class="chain-detail active" id="chain-detail-1">
+                        <div class="detail-header">
+                            <div class="detail-icon"><i class="fas fa-database"></i></div>
+                            <h4>Atto 1: Raccogliere</h4>
+                            <span class="detail-motto">"Spazzatura dentro, spazzatura fuori"</span>
+                        </div>
+                        <div class="detail-story">
+                            <div class="story-card">
+                                <p class="story-context">Elena chiede a Exempia Food:</p>
+                                <p class="story-quote">"Quanti clienti avete nel CRM?"</p>
+                                <p class="story-answer">"25.000!"</p>
+                                <p class="story-reveal">Analisi più attenta: 8.000 duplicati. 7.000 email non valide. 5.000 inattivi da 5 anni.</p>
+                                <p class="story-truth"><strong>Realtà: 5.000 clienti attivi.</strong></p>
+                            </div>
+                        </div>
+                        <div class="detail-lesson">
+                            <h5>Il ruolo del commercialista</h5>
+                            <ul>
+                                <li><strong>Verifica:</strong> I duplicati sono stati eliminati? I campi vuoti gestiti?</li>
+                                <li><strong>Documenta:</strong> Da dove vengono questi dati? Chi li ha toccati?</li>
+                                <li><strong>Classifica:</strong> Dati per chiacchierata o per decisione da CdA?</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="chain-detail" id="chain-detail-2">
+                        <div class="detail-header">
+                            <div class="detail-icon"><i class="fas fa-share-alt"></i></div>
+                            <h4>Atto 2: Condividere</h4>
+                            <span class="detail-motto">"Solo perché puoi, non significa che devi"</span>
+                        </div>
+                        <div class="detail-story">
+                            <div class="story-card">
+                                <p class="story-context">Exempia Food ha installato badge elettronici per la sicurezza.</p>
+                                <p class="story-quote">L'HR chiede i dati: "Chi arriva tardi."</p>
+                                <p class="story-quote">Il marketing: "Flussi per la mensa."</p>
+                                <p class="story-quote">Il CFO: "Produttività per reparto."</p>
+                                <p class="story-truth"><strong>I dipendenti sapevano che i badge sarebbero stati usati così?</strong></p>
+                            </div>
+                        </div>
+                        <div class="detail-lesson">
+                            <h5>Il ruolo del commercialista</h5>
+                            <ul>
+                                <li><strong>Chi può accedere?</strong> Non tutti i dati sono per tutti</li>
+                                <li><strong>Da dove vengono?</strong> Devi provarne l'origine</li>
+                                <li><strong>È legale qui?</strong> GDPR in Italia ≠ USA</li>
+                                <li><strong>Compliance:</strong> Verifica che la condivisione rispetti normative e policy aziendali</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="chain-detail" id="chain-detail-3">
+                        <div class="detail-header">
+                            <div class="detail-icon"><i class="fas fa-brain"></i></div>
+                            <h4>Atto 3: Analizzare</h4>
+                            <span class="detail-motto">"Il modello funziona. Ma le assunzioni sono giuste?"</span>
+                        </div>
+                        <div class="detail-story">
+                            <div class="story-card dialogue">
+                                <div class="dialogue-line">
+                                    <span class="speaker">Data Scientist:</span>
+                                    <span class="text">"Il nostro modello predice il churn con l'85% di accuratezza!"</span>
+                                </div>
+                                <div class="dialogue-line">
+                                    <span class="speaker">Elena:</span>
+                                    <span class="text">"Su che periodo avete addestrato il modello?"</span>
+                                </div>
+                                <div class="dialogue-line">
+                                    <span class="speaker">Data Scientist:</span>
+                                    <span class="text">"Ultimi 3 anni."</span>
+                                </div>
+                                <div class="dialogue-line">
+                                    <span class="speaker">Elena:</span>
+                                    <span class="text">"Ma negli ultimi 3 anni eravamo monopolisti. Ora c'è un concorrente. I pattern saranno gli stessi?"</span>
+                                </div>
+                                <div class="dialogue-line silence">
+                                    <span class="text"><em>Silenzio imbarazzato.</em></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="detail-lesson">
+                            <h5>Le domande del commercialista</h5>
+                            <ul>
+                                <li><strong>"Che dati avete usato?"</strong> → Provenienza e qualità</li>
+                                <li><strong>"Che assunzioni avete fatto?"</strong> → Ragionevolezza</li>
+                                <li><strong>"Cosa succede se cambiano?"</strong> → Sensitività</li>
+                                <li><strong>"Come saprete se smette di funzionare?"</strong> → Monitoraggio</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="chain-detail" id="chain-detail-4">
+                        <div class="detail-header">
+                            <div class="detail-icon"><i class="fas fa-bullhorn"></i></div>
+                            <h4>Atto 4: Comunicare</h4>
+                            <span class="detail-motto">"I dati non parlano da soli"</span>
+                        </div>
+                        <div class="detail-story">
+                            <div class="story-card dialogue">
+                                <div class="dialogue-line">
+                                    <span class="speaker">Algoritmo:</span>
+                                    <span class="text">"Il cliente Rossi ha il 78% di probabilità di abbandonarci."</span>
+                                </div>
+                                <div class="dialogue-line">
+                                    <span class="speaker">Commerciale:</span>
+                                    <span class="text">"Impossibile! Lo conosco da 15 anni, abbiamo un rapporto eccellente."</span>
+                                </div>
+                                <div class="dialogue-line highlight">
+                                    <span class="speaker">Elena:</span>
+                                    <span class="text">"Chi ha ragione? Forse l'algoritmo vede pattern nei dati. Forse il commerciale sa che il figlio di Rossi sta entrando in azienda e vuole cambiare fornitori."</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="detail-lesson">
+                            <h5>Il valore del commercialista</h5>
+                            <ul>
+                                <li><strong>Far dialogare</strong> dati e intuizione</li>
+                                <li><strong>Evitare</strong> il bias di automazione ("lo dice il computer")</li>
+                                <li><strong>Evitare</strong> il bias dell'esperto ("ho 30 anni di esperienza")</li>
+                                <li><strong>Tradurre</strong> i numeri in decisioni</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="chapter-transition">
+                    <p>La catena è chiara. Ora serve uno strumento per vedere i dati.</p>
+                    <a href="#powerbi" class="btn-next"><span>Power BI</span><i class="fas fa-chevron-down"></i></a>
+                </div>
+            </div>
+        </section>
+
+        <!-- CAPITOLO 6: Power BI -->
+        <section id="powerbi" class="section dark-section">
+            <div class="section-container">
+                <div class="chapter-header">
+                    <span class="chapter-number">Capitolo 06</span>
+                    <h2 class="chapter-title">La Visione</h2>
+                    <p class="chapter-intro">Elena introduce Power BI e il modello a stella.</p>
+                </div>
+
+                <div class="narrative-block centered">
+                    <p class="lead">Tre mesi dopo. Exempia Food ha messo ordine nei dati.</p>
+                    <p>Ora serve uno strumento per <strong>visualizzarli</strong>, <strong>esplorarli</strong> e <strong>comunicarli</strong>.</p>
+                </div>
+
+                <!-- Power BI Workflow -->
+                <div class="powerbi-workflow">
+                    <h4>Il flusso in Power BI</h4>
+                    <div class="workflow-steps">
+                        <div class="workflow-step" data-step="connect">
+                            <div class="step-num">1</div>
+                            <div class="step-icon"><i class="fas fa-plug"></i></div>
+                            <h5>Connetti</h5>
+                            <p>Collegati ai dati ovunque siano</p>
+                            <div class="step-detail">
+                                <span>SQL</span><span>Excel</span><span>API</span><span>Cloud</span>
+                            </div>
+                        </div>
+                        <div class="workflow-step" data-step="transform">
+                            <div class="step-num">2</div>
+                            <div class="step-icon"><i class="fas fa-magic"></i></div>
+                            <h5>Trasforma</h5>
+                            <p>Power Query pulisce e prepara</p>
+                            <div class="step-detail">
+                                <span>Pulisci</span><span>Unisci</span><span>Calcola</span>
+                            </div>
+                        </div>
+                        <div class="workflow-step" data-step="model">
+                            <div class="step-num">3</div>
+                            <div class="step-icon"><i class="fas fa-project-diagram"></i></div>
+                            <h5>Modella</h5>
+                            <p>Crea relazioni tra tabelle</p>
+                            <div class="step-detail">
+                                <span>Star Schema</span><span>Relazioni</span>
+                            </div>
+                        </div>
+                        <div class="workflow-step" data-step="visualize">
+                            <div class="step-num">4</div>
+                            <div class="step-icon"><i class="fas fa-chart-line"></i></div>
+                            <h5>Visualizza</h5>
+                            <p>Dashboard interattive</p>
+                            <div class="step-detail">
+                                <span>Grafici</span><span>KPI</span><span>Filtri</span>
+                            </div>
+                        </div>
+                        <div class="workflow-step" data-step="share">
+                            <div class="step-num">5</div>
+                            <div class="step-icon"><i class="fas fa-share-alt"></i></div>
+                            <h5>Condividi</h5>
+                            <p>Pubblica e collabora</p>
+                            <div class="step-detail">
+                                <span>Web</span><span>Mobile</span><span>Teams</span>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="workflow-hint"><i class="fas fa-hand-pointer"></i> Clicca su ogni fase per approfondire</p>
+                </div>
+
+                <!-- Popup Power BI Steps -->
+                <div class="powerbi-popup" id="powerbiPopup">
+                    <div class="powerbi-popup-content">
+                        <button class="popup-close"><i class="fas fa-times"></i></button>
+                        <div class="powerbi-popup-body" id="powerbiPopupBody"></div>
+                    </div>
+                </div>
+
+                <!-- Star Schema -->
+                <div class="star-schema-section">
+                    <h4>Il Modello a Stella (Star Schema)</h4>
+                    <p class="section-intro">Il modo migliore per organizzare i dati per l'analisi.</p>
+
+                    <div class="star-visual-simple">
+                        <!-- Riga superiore: 2 dimensioni -->
+                        <div class="star-row top">
+                            <div class="dim-box" data-table="clienti">
+                                <i class="fas fa-users"></i>
+                                <span>Clienti</span>
+                            </div>
+                            <div class="dim-box" data-table="prodotti">
+                                <i class="fas fa-box"></i>
+                                <span>Prodotti</span>
+                            </div>
+                        </div>
+
+                        <!-- Linee superiori -->
+                        <div class="star-connectors top">
+                            <div class="connector"></div>
+                            <div class="connector"></div>
+                        </div>
+
+                        <!-- Riga centrale: 1 dimensione + FACT + 1 dimensione -->
+                        <div class="star-row middle">
+                            <div class="dim-box side" data-table="tempo">
+                                <i class="fas fa-calendar"></i>
+                                <span>Tempo</span>
+                            </div>
+                            <div class="connector horizontal"></div>
+                            <div class="fact-box" data-table="vendite">
+                                <i class="fas fa-table"></i>
+                                <span class="fact-type">FACT TABLE</span>
+                                <span class="fact-name">Vendite</span>
+                                <span class="fact-metrics">Importo • Quantità • Margine</span>
+                            </div>
+                            <div class="connector horizontal"></div>
+                            <div class="dim-box side" data-table="negozi">
+                                <i class="fas fa-store"></i>
+                                <span>Negozi</span>
+                            </div>
+                        </div>
+
+                        <!-- Linea inferiore -->
+                        <div class="star-connectors bottom">
+                            <div class="connector"></div>
+                        </div>
+
+                        <!-- Riga inferiore: 1 dimensione -->
+                        <div class="star-row bottom">
+                            <div class="dim-box" data-table="venditori">
+                                <i class="fas fa-person-dress"></i>
+                                <span>Venditori</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="schema-explanation">
+                        <div class="schema-box fact">
+                            <h5><i class="fas fa-calculator"></i> Fact Table</h5>
+                            <p>I <strong>numeri</strong> che vuoi analizzare: importi, quantità, costi.</p>
+                            <p class="note">Ogni riga = un evento/transazione</p>
+                        </div>
+                        <div class="schema-box dim">
+                            <h5><i class="fas fa-tags"></i> Dimension Tables</h5>
+                            <p>Le <strong>descrizioni</strong> per filtrare: chi, cosa, quando, dove.</p>
+                            <p class="note">Ogni riga = un'entità descrittiva</p>
+                        </div>
+                    </div>
+
+                    <div class="schema-benefits">
+                        <div class="benefit">
+                            <i class="fas fa-bolt"></i>
+                            <h6>Performance</h6>
+                            <p>Query velocissime</p>
+                        </div>
+                        <div class="benefit">
+                            <i class="fas fa-brain"></i>
+                            <h6>Comprensibile</h6>
+                            <p>Facile da capire</p>
+                        </div>
+                        <div class="benefit">
+                            <i class="fas fa-expand"></i>
+                            <h6>Flessibile</h6>
+                            <p>Facile da estendere</p>
+                        </div>
+                        <div class="benefit">
+                            <i class="fas fa-filter"></i>
+                            <h6>Filtri naturali</h6>
+                            <p>Slice & dice intuitivo</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Popup Star Schema Tables -->
+                <div class="info-popup" id="starSchemaPopup">
+                    <div class="popup-content star-popup-content">
+                        <button class="popup-close"><i class="fas fa-times"></i></button>
+                        <div class="popup-body" id="starSchemaPopupBody"></div>
+                    </div>
+                </div>
+
+                <!-- DAX Examples -->
+                <div class="dax-section">
+                    <h4>DAX: Il linguaggio dei calcoli</h4>
+                    <div class="dax-examples">
+                        <div class="dax-example">
+                            <code>Fatturato YTD = CALCULATE([Fatturato], DATESYTD('Calendario'[Data]))</code>
+                            <span class="dax-desc">Fatturato dall'inizio dell'anno</span>
+                        </div>
+                        <div class="dax-example">
+                            <code>Margine % = DIVIDE([Margine], [Fatturato], 0)</code>
+                            <span class="dax-desc">Margine percentuale sicuro</span>
+                        </div>
+                        <div class="dax-example">
+                            <code>Clienti Attivi = DISTINCTCOUNT(Vendite[ClienteID])</code>
+                            <span class="dax-desc">Conta clienti unici</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Il risultato per Exempia Food -->
+                <div class="result-showcase">
+                    <div class="result-header">
+                        <div class="elena-badge"><i class="fas fa-person-dress"></i></div>
+                        <h4>Il risultato per Exempia Food</h4>
+                    </div>
+                    <div class="result-comparison">
+                        <div class="comparison-before">
+                            <h5><i class="fas fa-times"></i> Prima</h5>
+                            <ul>
+                                <li>Report dopo 2 mesi</li>
+                                <li>Dati raccolti a mano</li>
+                                <li>Nessuno lo leggeva</li>
+                            </ul>
+                        </div>
+                        <div class="comparison-after">
+                            <h5><i class="fas fa-check"></i> Dopo</h5>
+                            <ul>
+                                <li>Dashboard in 1 giorno</li>
+                                <li>Alimentazione automatica</li>
+                                <li>Self-service per tutti</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="result-quote">
+                        <p class="quote-text">"Ma questi sono i dati veri?"</p>
+                        <p class="quote-answer">"Sì. Aggiornati a ieri."</p>
+                        <p class="quote-reaction">Silenzio. Poi: "Perché non l'abbiamo fatto prima?"</p>
+                    </div>
+                </div>
+
+                <div class="chapter-transition light">
+                    <p>Ma Elena sa che c'è un passo in più. L'intelligenza artificiale.</p>
+                    <a href="#mcp" class="btn-next"><span>MCP Server</span><i class="fas fa-chevron-down"></i></a>
+                </div>
+            </div>
+        </section>
+
+        <!-- CAPITOLO 7: MCP Server -->
+        <section id="mcp" class="section">
+            <div class="section-container">
+                <div class="chapter-header">
+                    <span class="chapter-number">Capitolo 07</span>
+                    <h2 class="chapter-title">L'Intelligenza</h2>
+                    <p class="chapter-intro">Il Model Context Protocol: quando l'IA interroga i tuoi dati.</p>
+                </div>
+
+                <div class="narrative-block centered">
+                    <p class="lead">Un anno dopo. Elena ha imparato a usare Power BI.</p>
+                    <p>Ora vuole accelerare: creare misure DAX più velocemente, senza dover imparare ogni sfumatura del linguaggio. L'IA può aiutarla.</p>
+                </div>
+
+                <!-- MCP Visual -->
+                <div class="mcp-visual">
+                    <div class="mcp-center">
+                        <div class="mcp-core">
+                            <i class="fas fa-brain"></i>
+                            <span>Claude / GPT</span>
+                        </div>
+                    </div>
+                    <div class="mcp-orbit">
+                        <div class="mcp-node" style="--i: 0">
+                            <i class="fas fa-chart-bar"></i>
+                            <span>Power BI</span>
+                        </div>
+                        <div class="mcp-node" style="--i: 1">
+                            <i class="fas fa-database"></i>
+                            <span>Database</span>
+                        </div>
+                        <div class="mcp-node" style="--i: 2">
+                            <i class="fas fa-file-excel"></i>
+                            <span>Excel</span>
+                        </div>
+                        <div class="mcp-node" style="--i: 3">
+                            <i class="fas fa-cloud"></i>
+                            <span>API</span>
+                        </div>
+                        <div class="mcp-node" style="--i: 4">
+                            <i class="fas fa-folder"></i>
+                            <span>File</span>
+                        </div>
+                        <div class="mcp-node" style="--i: 5">
+                            <i class="fas fa-code"></i>
+                            <span>Codice</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Cos'è MCP -->
+                <div class="mcp-explanation">
+                    <h4>Cos'è il Model Context Protocol?</h4>
+                    <div class="mcp-features">
+                        <div class="mcp-feature">
+                            <div class="feature-icon"><i class="fas fa-plug"></i></div>
+                            <h5>Connessione Universale</h5>
+                            <p>Un protocollo standard per collegare l'IA a qualsiasi fonte dati: database, API, file system, servizi cloud.</p>
+                        </div>
+                        <div class="mcp-feature">
+                            <div class="feature-icon"><i class="fas fa-comments"></i></div>
+                            <h5>Linguaggio Naturale</h5>
+                            <p>"Qual è il fatturato del Q3 per il cliente Rossi?" → Risposta immediata con dati reali.</p>
+                        </div>
+                        <div class="mcp-feature">
+                            <div class="feature-icon"><i class="fas fa-shield-alt"></i></div>
+                            <h5>Controllo e Governance</h5>
+                            <p>L'IA accede solo ai dati autorizzati. Ogni query è tracciata e verificabile.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- MCP Server Power BI -->
+                <div class="mcp-powerbi-section">
+                    <div class="mcp-powerbi-header">
+                        <div class="powerbi-logo"><i class="fas fa-chart-pie"></i></div>
+                        <div class="powerbi-info">
+                            <h4>MCP Server per Power BI</h4>
+                            <p>Microsoft ha sviluppato un MCP Server ufficiale che permette all'IA di interrogare direttamente i tuoi report Power BI.</p>
+                        </div>
+                    </div>
+                    <div class="mcp-powerbi-features">
+                        <div class="powerbi-feature">
+                            <div class="feature-num">1</div>
+                            <div class="feature-text">
+                                <h5>Esegui query DAX in linguaggio naturale</h5>
+                                <p>Chiedi "Mostrami le vendite per regione dell'ultimo trimestre" e l'IA genera ed esegue la query DAX corretta.</p>
+                            </div>
+                        </div>
+                        <div class="powerbi-feature">
+                            <div class="feature-num">2</div>
+                            <div class="feature-text">
+                                <h5>Esplora il modello semantico</h5>
+                                <p>L'IA può leggere tabelle, relazioni, misure e capire la struttura del tuo data model.</p>
+                            </div>
+                        </div>
+                        <div class="powerbi-feature">
+                            <div class="feature-num">3</div>
+                            <div class="feature-text">
+                                <h5>Genera insight automatici</h5>
+                                <p>"Quali anomalie vedi nei dati di vendita?" → Analisi automatica con spiegazioni contestuali.</p>
+                            </div>
+                        </div>
+                        <div class="powerbi-feature">
+                            <div class="feature-num">4</div>
+                            <div class="feature-text">
+                                <h5>Rispetta i permessi esistenti</h5>
+                                <p>L'IA vede solo i dati a cui l'utente ha accesso. Row-Level Security rispettata.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mcp-powerbi-example">
+                        <div class="example-label">Esempio pratico</div>
+                        <div class="example-code">
+                            <p class="code-comment">// L'utente chiede:</p>
+                            <p class="code-user">"Confronta il margine operativo di Exempia Food tra Q1 e Q2, evidenziando i prodotti con calo superiore al 10%"</p>
+                            <p class="code-comment">// MCP Server per Power BI:</p>
+                            <p class="code-action">1. Identifica le tabelle rilevanti nel modello</p>
+                            <p class="code-action">2. Genera query DAX con filtri temporali</p>
+                            <p class="code-action">3. Calcola variazioni percentuali</p>
+                            <p class="code-action">4. Formatta risposta con insight</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Demo conversazione -->
+                <div class="mcp-demo">
+                    <h4>Elena crea misure DAX con l'IA</h4>
+                    <div class="chat-window">
+                        <div class="chat-message user">
+                            <div class="msg-content">
+                                <p>Ho bisogno di una misura che calcoli il margine percentuale per prodotto, ma solo per i clienti attivi nell'ultimo anno.</p>
+                            </div>
+                        </div>
+                        <div class="chat-message user">
+                            <div class="msg-content">
+                                <p>Perfetto. Ora mi serve il confronto anno su anno del fatturato, mese per mese.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mcp-workflow-note">
+                        <i class="fas fa-exclamation-circle"></i>
+                        <p><strong>Il metodo di Elena:</strong> L'IA genera la bozza, poi Elena la rivede con il team IT per validare la logica e verificare che i nomi dei campi siano corretti.</p>
+                    </div>
+                </div>
+
+                <div class="chapter-transition">
+                    <p>L'IA non è magia. È uno strumento che va governato. E chi meglio del commercialista?</p>
+                    <a href="#ruoli" class="btn-next"><span>Il tuo ruolo</span><i class="fas fa-chevron-down"></i></a>
+                </div>
+            </div>
+        </section>
+
+        <!-- CAPITOLO 8: Il Ruolo del Commercialista -->
+        <section id="ruoli" class="section dark-section">
+            <div class="section-container">
+                <div class="chapter-header">
+                    <span class="chapter-number">Capitolo 08</span>
+                    <h2 class="chapter-title">Il Ruolo</h2>
+                    <p class="chapter-intro">Tre livelli di gioco. Scegli tu quanto in alto vuoi arrivare.</p>
+                </div>
+
+                <!-- I tre livelli -->
+                <div class="levels-showcase">
+                    <div class="level-card" data-level="1">
+                        <div class="level-badge">LV.1</div>
+                        <div class="level-icon"><i class="fas fa-shield-alt"></i></div>
+                        <h4>Il Guardiano</h4>
+                        <p class="level-type">Ruolo Core</p>
+                        <div class="level-content">
+                            <p><strong>Cosa fai già:</strong> Certifichi che il bilancio sia corretto.</p>
+                            <p><strong>Cosa puoi fare:</strong> Certificare che <em>qualsiasi</em> dataset sia affidabile.</p>
+                        </div>
+                        <div class="level-example">
+                            <p class="example-quote">"Questi dati sui clienti sono completi? Possiamo fidarci?"</p>
+                        </div>
+                    </div>
+
+                    <div class="level-card" data-level="2">
+                        <div class="level-badge">LV.2</div>
+                        <div class="level-icon"><i class="fas fa-user-shield"></i></div>
+                        <h4>Il Custode</h4>
+                        <p class="level-type">Ruolo Potenziato</p>
+                        <div class="level-content">
+                            <p><strong>Cosa fai già:</strong> Proteggi il patrimonio aziendale.</p>
+                            <p><strong>Cosa puoi fare:</strong> Proteggere il patrimonio <em>informativo</em>.</p>
+                        </div>
+                        <div class="level-example">
+                            <p class="example-quote">"Chi può accedere? Li stiamo usando nel rispetto delle norme?"</p>
+                        </div>
+                    </div>
+
+                    <div class="level-card featured" data-level="3">
+                        <div class="level-badge">LV.3</div>
+                        <div class="level-icon"><i class="fas fa-chess-king"></i></div>
+                        <h4>Lo Stratega</h4>
+                        <p class="level-type">Ruolo Guadagnato</p>
+                        <div class="level-content">
+                            <p><strong>Cosa fai già:</strong> Consigli sulle decisioni finanziarie.</p>
+                            <p><strong>Cosa puoi fare:</strong> Trasformare i dati in <em>strategie di business</em>.</p>
+                        </div>
+                        <div class="level-example">
+                            <p class="example-quote">"Ecco quali clienti perderemo, perché, quanto ci costa, cosa fare."</p>
+                        </div>
+                        <div class="level-note">
+                            <i class="fas fa-star"></i>
+                            <span>Questo livello te lo guadagni. Non ti viene regalato.</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Cosa NON devi fare -->
+                <div class="skills-section">
+                    <h4>Cosa devi imparare?</h4>
+                    <p class="section-intro">Buone notizie: meno di quello che pensi.</p>
+
+                    <div class="skills-comparison">
+                        <div class="skills-no">
+                            <h5><i class="fas fa-times"></i> NON devi diventare:</h5>
+                            <ul>
+                                <li>Un programmatore</li>
+                                <li>Un data scientist</li>
+                                <li>Un esperto di machine learning</li>
+                                <li>Un sistemista</li>
+                            </ul>
+                        </div>
+                        <div class="skills-yes">
+                            <h5><i class="fas fa-check"></i> DEVI sviluppare:</h5>
+                            <ul>
+                                <li>Capire il linguaggio dei dati</li>
+                                <li>Pensare ai rischi</li>
+                                <li>Collegare i puntini</li>
+                                <li>Fare le domande giuste</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Il vantaggio competitivo -->
+                <div class="competitive-advantage">
+                    <div class="advantage-icon"><i class="fas fa-lightbulb"></i></div>
+                    <div class="advantage-content">
+                        <p>I data scientist abbondano.</p>
+                        <p>I commercialisti che capiscono i dati sono <strong>rari</strong>.</p>
+                        <p class="highlight">Questa è la tua opportunità.</p>
+                    </div>
+                </div>
+
+                <div class="chapter-transition light">
+                    <p>Il viaggio di Elena e Exempia Food è già iniziato. Quando inizierà il tuo?</p>
+                    <a href="#finale" class="btn-next"><span>La Rivelazione</span><i class="fas fa-chevron-down"></i></a>
+                </div>
+            </div>
+        </section>
+
+        <!-- CAPITOLO FINALE: La Rivelazione -->
+        <section id="finale" class="section finale-section">
+            <div class="section-container">
+                <div class="chapter-header">
+                    <span class="chapter-number">Epilogo</span>
+                    <h2 class="chapter-title">La Rivelazione</h2>
+                </div>
+
+                <!-- Risultati Exempia Food -->
+                <div class="finale-results">
+                    <h4>Exempia Food, un anno dopo</h4>
+                    <div class="results-grid">
+                        <div class="result-item">
+                            <div class="result-icon"><i class="fas fa-clock"></i></div>
+                            <div class="result-before">2 mesi</div>
+                            <div class="result-arrow"><i class="fas fa-arrow-right"></i></div>
+                            <div class="result-after">1 giorno</div>
+                            <div class="result-label">Tempo per il report</div>
+                        </div>
+                        <div class="result-item">
+                            <div class="result-icon"><i class="fas fa-users"></i></div>
+                            <div class="result-before">25.000</div>
+                            <div class="result-arrow"><i class="fas fa-arrow-right"></i></div>
+                            <div class="result-after">5.000</div>
+                            <div class="result-label">Clienti reali (non duplicati)</div>
+                        </div>
+                        <div class="result-item">
+                            <div class="result-icon"><i class="fas fa-check-circle"></i></div>
+                            <div class="result-before">3 versioni</div>
+                            <div class="result-arrow"><i class="fas fa-arrow-right"></i></div>
+                            <div class="result-after">1 verità</div>
+                            <div class="result-label">Single source of truth</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Cosa fare lunedì -->
+                <div class="action-section">
+                    <h4>3 cose da fare lunedì mattina</h4>
+                    <div class="actions-list">
+                        <div class="action-item">
+                            <div class="action-num">1</div>
+                            <div class="action-content">
+                                <h5>Fai una domanda diversa</h5>
+                                <p>La prossima volta che qualcuno ti presenta dei numeri:</p>
+                                <p class="action-quote">"Da dove vengono questi dati? Chi li ha raccolti? Come?"</p>
+                            </div>
+                        </div>
+                        <div class="action-item">
+                            <div class="action-num">2</div>
+                            <div class="action-content">
+                                <h5>Cerca un alleato</h5>
+                                <p>Trova il collega IT, il data analyst, il responsabile CRM.</p>
+                                <p class="action-quote">"Quali dati avete che nessuno usa? Quali problemi vedete?"</p>
+                            </div>
+                        </div>
+                        <div class="action-item">
+                            <div class="action-num">3</div>
+                            <div class="action-content">
+                                <h5>Inizia in piccolo</h5>
+                                <p>Prendi un report che fai già. Chiediti:</p>
+                                <p class="action-quote">"Quali dati non finanziari lo renderebbero più utile?"</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Messaggio finale -->
+                <div class="final-message">
+                    <div class="message-content">
+                        <blockquote>
+                            "Nel diluvio di dati, non vince chi ne ha di più.<br>
+                            Vince chi sa quali contano, se sono affidabili, e cosa farne."
+                        </blockquote>
+                        <p class="message-footer">
+                            <strong>Questo è sempre stato il lavoro del commercialista.</strong><br>
+                            Ora il campo di gioco si è allargato.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Citazione IFAC -->
+                <div class="ifac-quote">
+                    <div class="quote-icon"><i class="fas fa-quote-left"></i></div>
+                    <blockquote>
+                        "I commercialisti possono guidare le organizzazioni attraverso settori e industrie per adattarsi e forgiare nuovi percorsi con integrità e longevità."
+                    </blockquote>
+                    <cite>— CPA Canada & IFAC, 2021</cite>
+                </div>
+
+                <!-- USB finale -->
+                <div class="final-visual">
+                    <div class="usb-chain">
+                        <div class="usb-icon"><i class="fas fa-hard-drive"></i></div>
+                        <div class="chain-dots">
+                            <span></span><span></span><span></span><span></span><span></span>
+                        </div>
+                        <div class="sun-icon"><i class="fas fa-sun"></i></div>
+                    </div>
+                    <p>Una catena di chiavette con i dati del mondo arriverebbe quasi al Sole.</p>
+                    <p>Ma il 90% di quei dati non serve a niente senza qualcuno che li governi.</p>
+                    <p class="final-call"><strong>Quel qualcuno potresti essere tu.</strong></p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-brand">
+                <i class="fas fa-chart-line"></i>
+                <span>Data Journey</span>
+            </div>
+            <div class="footer-back">
+                <a href="#hero"><i class="fas fa-arrow-up"></i> Torna all'inizio</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
